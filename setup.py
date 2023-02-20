@@ -29,7 +29,7 @@ def get_version():
 
 
 setup(
-    name="dc",
+    name="dallecli",
     python_requires=">3.5",
     options={"bdist_wheel": {"universal": "1"}},
     version=get_version(),

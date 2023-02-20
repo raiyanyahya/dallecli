@@ -21,7 +21,7 @@ The cli requires you to have an api token to query the OpenAI's api. You can rea
 Install the dc python package directly from pypi. 
 
 ```console
-  pip install dc
+  pip install dallecli
 ```
 I would recommend using pipx instead of pip to install cli applications on you machine.
 

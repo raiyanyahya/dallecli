@@ -30,7 +30,7 @@ I would recommend using pipx instead of pip to install cli applications on you m
 ```console
 Usage: dc [OPTIONS] COMMAND [ARGS]...
 
-  🃏 Use the Dall.E 2 api to generate, edit & filter images from the cmd line.
+  💠 Use the Dall.E 2 api to generate, edit & filter images from the cmd line.
 
 Options:
   --help  Show this message and exit.

@@ -14,7 +14,7 @@ This is ideal for developers, designers, and anyone who wants to quickly generat
 
 ## Configuration
 
-The cli requires you to have an api token to query the OpenAI's api. You can read about and get it here "[https://platform.openai.com/account/api-keys]".
+The cli requires you to have an api token to query the OpenAI's api. You can read about and get it here https://platform.openai.com/account/api-keys.
 
 ## Installation
 

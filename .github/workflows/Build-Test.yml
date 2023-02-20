@@ -20,7 +20,7 @@ jobs:
       - name: build
         run: |
             pip install --upgrade pip
-            python3 setup.py install
+            pip3 install .
             
   Test:
       needs: [Build]

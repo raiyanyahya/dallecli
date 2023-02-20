@@ -18,7 +18,10 @@ jobs:
             python-version: 3.8
 
       - name: build
-        run: python3 setup.py install
+        run: |
+            pip install --upgrade pip
+            python3 setup.py install
+            
   Test:
       needs: [Build]
       runs-on: ubuntu-latest

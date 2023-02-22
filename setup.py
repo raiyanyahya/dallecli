@@ -40,7 +40,7 @@ setup(
     author="Raiyan Yahya",
     license="MIT",
     author_email="raiyanyahyadeveloper@gmail.com",
-    keywords=["cli", "developer tools", "productivity", "openai", "generative art"],
+    keywords=["cli", "developer tools", "productivity", "openai", "generative art", "ai"],
     packages=find_packages(),
     install_requires=["click==8.1.3", "openai==0.26.5", "rich==13.3.1", "idna"],
     entry_points={"console_scripts": ["dc=dallecli.cli:cli"]},

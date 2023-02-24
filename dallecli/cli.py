@@ -46,8 +46,8 @@ def generate_image(prompt, size, filter, iterations, save_path=None):
                     if not path.exists(path.dirname(save_path)):
                         makedirs(path.dirname(save_path))
                     image.save(save_path)
-    except openai.error.AuthenticationError():
-        print("🔒 Incorrect API key provided.")
+    except openai.error.AuthenticationError:
+        print("🔒 Authentication Failed. Try with a fresh API key.")
     except Exception:
         print("❌ Failed to generate image. Please try again with a different prompt.")
 

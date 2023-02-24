@@ -1,6 +1,6 @@
 [![Actions Status](https://github.com/raiyanyahya/dallecli/workflows/Build%20Test/badge.svg)](https://github.com/raiyanyahya/dallecli/actions) [![Actions Status](https://github.com/raiyanyahya/dallecli/workflows/Package%20Release/badge.svg)](https://github.com/raiyanyahya/dallecli/actions) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=raiyanyahya_dallecli&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=raiyanyahya_dallecli)[![CodeQL](https://github.com/raiyanyahya/dallecli/workflows/CodeQL/badge.svg)](https://github.com/raiyanyahya/dallecli/actions?query=workflow%3ACodeQL) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/851417bc6ec8405ba244438fe31dae55)](https://www.codacy.com/gh/raiyanyahya/dallecli/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=raiyanyahya/dallecli&amp;utm_campaign=Badge_Grade) [![](https://img.shields.io/badge/python-3.6+-blue.svg)] 
 [![PyPI version](https://badge.fury.io/py/dallecli.png)](https://badge.fury.io/py/dallecli)[![PyPI download month](https://img.shields.io/pypi/dm/dallecli.svg)](https://pypi.python.org/pypi/dallecli/)[![Linux](https://svgshare.com/i/Zhy.svg)](https://svgshare.com/i/Zhy.svg)[![macOS](https://svgshare.com/i/ZjP.svg)](https://svgshare.com/i/ZjP.svg)
-# DC 💠
+# DalleCli 💠
 
 `dallecli` is a community-maintained cli designed to provide users with the ability to generate, edit and filter images using the DALL-E 2 API provided by OpenAI, all from the command line.
 
@@ -20,7 +20,7 @@ The cli requires you to have an api token to query the OpenAI's api. You can rea
 
 ## Installation
 
-Install the dc python package directly from pypi. 
+Install the dallecli python package directly from pypi. 
 
 ```console
   pip install dallecli

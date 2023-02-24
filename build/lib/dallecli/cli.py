@@ -108,7 +108,6 @@ def apply_filter_choices(image, filter_name):
 
 
 @click.group()
-@click.version_option(version="1.2.0")
 def cli():
     """💠 Use the Dall.E 2 api to generate, edit & filter images from the cmd line."""
 

@@ -1,0 +1,11 @@
+LICENSE
+README.md
+setup.py
+dallecli/__init__.py
+dallecli/cli.py
+dallecli.egg-info/PKG-INFO
+dallecli.egg-info/SOURCES.txt
+dallecli.egg-info/dependency_links.txt
+dallecli.egg-info/entry_points.txt
+dallecli.egg-info/requires.txt
+dallecli.egg-info/top_level.txt

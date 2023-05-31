@@ -22,6 +22,6 @@ setup(
     author_email="raiyanyahyadeveloper@gmail.com",
     keywords=["cli", "developer tools", "productivity", "openai", "generative art", "ai"],
     packages=find_packages(),
-    install_requires=["click==8.1.3", "openai==0.27.2", "rich==13.3.1", "idna", "pillow"],
+    install_requires=["click==8.1.3", "openai==0.27.2", "rich==13.4.1", "idna", "pillow"],
     entry_points={"console_scripts": ["dallecli=dallecli.cli:cli"]},
 )

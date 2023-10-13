@@ -30,7 +30,7 @@ setup(
     ],
     packages=find_packages(),
     install_requires=[
-        "click==8.1.3",
+        "click==8.1.7",
         "openai==0.27.8",
         "rich==13.4.2",
         "idna",

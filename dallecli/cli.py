@@ -27,7 +27,7 @@ def configure_openai():
     openai.api_key = api_key or getenv("OPENAI_API_KEY")
 
 
-def generate_image(prompt, size, filter, iterations, save_path=None):
+def generate_image(prompt, size, filter, iterations, hide, save_path=None):
     try:
         with console.status("Generating image...", spinner="dots8Bit"):
             for _ in range(iterations):
@@ -41,7 +41,8 @@ def generate_image(prompt, size, filter, iterations, save_path=None):
                     response.get("data")[0]["url"], timeout=300
                 ).content
                 image = Image.open(BytesIO(image_data))
-                image.show()
+                if not hide:
+                    image.show()
                 if save_path is not None:
                     if not path.exists(path.dirname(save_path)):
                         makedirs(path.dirname(save_path))
@@ -108,7 +109,7 @@ def apply_filter_choices(image, filter_name):
 
 
 @click.group()
-@click.version_option(version="1.2.0")
+@click.version_option(version="1.3.0")
 def cli():
     """💠 Use the Dall.E 2 api to generate, edit & filter images from the cmd line."""
 
@@ -155,10 +156,11 @@ def cli():
     help="💾 Save the generated image to the specified file path",
     default="images/output.png",
 )
-def generate(prompt, size, filter, iterations, save_path):
+@click.option("--hide", is_flag=True, help="🖱️ Do not open the image after generation")
+def generate(prompt, size, filter, iterations, save_path, hide):
     """🌸 Generate an image from the OpenAI Dalle api"""
     configure_openai()
-    generate_image(prompt, size, filter, iterations, save_path)
+    generate_image(prompt, size, filter, iterations, hide, save_path)
 
 
 @cli.command("edit")

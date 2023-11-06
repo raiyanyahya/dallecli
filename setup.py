@@ -31,7 +31,7 @@ setup(
     packages=find_packages(),
     install_requires=[
         "click==8.1.3",
-        "openai==0.27.8",
+        "openai==1.0.1",
         "rich==13.4.2",
         "idna",
         "pillow==9.4.0",

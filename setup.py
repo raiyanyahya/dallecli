@@ -32,7 +32,7 @@ setup(
     install_requires=[
         "click==8.1.3",
         "openai==0.27.8",
-        "rich==13.4.2",
+        "rich==13.7.0",
         "idna",
         "pillow==9.4.0",
     ],

@@ -30,7 +30,7 @@ try:
     import requests
     from rich.console import Console
 except ImportError as e:
-    print(f"❌ Error importing module: {e.path}")
+    print(f"❌ Error importing module: {e}")
     print("📦 Please install the required dependencies and try again.")
     exit(1)
 

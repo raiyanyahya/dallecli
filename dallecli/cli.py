@@ -71,12 +71,14 @@ def configure_openai():
 def _has_kitty() -> bool:
     """Check if kitty is installed."""
     logger.debug("Checking if kitty is installed…")
+    if os.environ.get("TERM") == "xterm-kitty":
+        return True
     for p in sys_path:
         kitty_path = path.join(p, "kitty")
         logger.debug(f"Checking {kitty_path}…")
         if not path.exists(kitty_path):
             continue
-        kitty_path = os.path.realpath(kitty_path)
+        kitty_path = os.path.abspath(os.path.realpath(kitty_path))
         if (
             not path.exists(kitty_path)
             or not path.isfile(kitty_path)
@@ -171,10 +173,10 @@ def generate_image(
             exif.update(
                 {
                     ExifTags.Base.XPComment: pickle_io.getvalue(),
-                    ExifTags.Base.XPAuthor: f"{model} via dallecli",
-                    ExifTags.Base.XPKeywords: prompt,
-                    ExifTags.Base.XPSubject: "Generated image",
-                    ExifTags.Base.XPTitle: revised_prompt,
+                    ExifTags.Base.XPAuthor: f"{model} via dallecli".encode("UTF-32"),
+                    ExifTags.Base.XPKeywords: prompt.encode("UTF-32"),
+                    ExifTags.Base.XPSubject: "Generated image".encode("UTF-32"),
+                    ExifTags.Base.XPTitle: revised_prompt.encode("UTF-32"),
                 }
             )
             exif.update(image.getexif())
@@ -245,6 +247,7 @@ def generate_image(
                 exif = image.getexif()
                 if ExifTags.Base.XPTitle in exif:
                     revised_prompt = exif[ExifTags.Base.XPTitle]
+                    revised_prompt = revised_prompt.decode("UTF-32")
                     revised_prompt = click.style(revised_prompt, italic=True)
                     msg_title = f"“Revised” prompt"
                     msg_title = click.style(msg_title, underline=True)

@@ -33,8 +33,9 @@ setup(
         "click==8.1.3",
         "openai==1.3.0",
         "rich==13.4.2",
-        "idna",
+        "idna>=3",
         "pillow==9.4.0",
+        "requests>=2",
     ],
     entry_points={"console_scripts": ["dallecli=dallecli.cli:cli"]},
 )

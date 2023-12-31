@@ -1,13 +1,14 @@
 import click
 from os import path, makedirs, getenv
 from io import BytesIO
-import openai
+from openai import OpenAI, AuthenticationError
 from PIL import Image, ImageEnhance, ImageFilter, ImageOps
 import requests
 from rich.progress import Console
 import json
 
 console = Console()
+client = OpenAI(api_key="")
 
 
 def configure_openai():
@@ -24,22 +25,23 @@ def configure_openai():
             api_key = input("🔑 Enter your OpenAI API key: ")
             with open(config_file, "w", encoding="UTF-8") as f:
                 f.write(f'{{"api_key": "{api_key}"}}')
-    openai.api_key = api_key or getenv("OPENAI_API_KEY")
+    client.api_key = api_key or getenv("OPENAI_API_KEY")
 
 
-def generate_image(prompt, size, filter, iterations, hide, save_path=None):
+def generate_image(
+    prompt, size, filter, iterations, hide, quality, model, save_path=None
+):
     try:
         with console.status("Generating image...", spinner="dots8Bit"):
             for _ in range(iterations):
-                response = openai.Image.create(
+                response = client.images.generate(
+                    model=model,
                     prompt=prompt,
                     size=size,
-                    response_format="url",
+                    quality=quality,
                     **({"filter": filter} if filter else {}),
                 )
-                image_data = requests.get(
-                    response.get("data")[0]["url"], timeout=300
-                ).content
+                image_data = requests.get(response.data[0].url, timeout=300).content
                 image = Image.open(BytesIO(image_data))
                 if not hide:
                     image.show()
@@ -47,10 +49,11 @@ def generate_image(prompt, size, filter, iterations, hide, save_path=None):
                     if not path.exists(path.dirname(save_path)):
                         makedirs(path.dirname(save_path))
                     image.save(save_path)
-    except openai.error.AuthenticationError:
+    except AuthenticationError:
         print("🔒 Authentication Failed. Try with a fresh API key.")
-    except Exception:
+    except Exception as e:
         print("❌ Failed to generate image. Please try again with a different prompt.")
+        print(f"Error: {e}")
 
 
 def edit_image(image, brightness=None, contrast=None, sharpness=None):
@@ -109,7 +112,7 @@ def apply_filter_choices(image, filter_name):
 
 
 @click.group()
-@click.version_option(version="1.3.0")
+@click.version_option(version="2.0.0")
 def cli():
     """💠 Use the Dall.E 2 api to generate, edit & filter images from the cmd line."""
 
@@ -121,7 +124,7 @@ def cli():
     prompt=True,
     help="💬 The prompt to generate the image from.",
 )
-@click.option("--size", default="512x512", help="📐 The size of the generated image.")
+@click.option("--size", default="1024x1024", help="📐 The size of the generated image.")
 @click.option(
     "--filter",
     type=click.Choice(
@@ -157,10 +160,16 @@ def cli():
     default="images/output.png",
 )
 @click.option("--hide", is_flag=True, help="🖱️ Do not open the image after generation")
-def generate(prompt, size, filter, iterations, save_path, hide):
+@click.option("--quality", default="standard", help="👌 The quality of the image")
+@click.option(
+    "--model",
+    default="dall-e-3",
+    help="🦾 The OpenAI model to use when generating images",
+)
+def generate(prompt, size, filter, iterations, save_path, hide, quality, model):
     """🌸 Generate an image from the OpenAI Dalle api"""
     configure_openai()
-    generate_image(prompt, size, filter, iterations, hide, save_path)
+    generate_image(prompt, size, filter, iterations, hide, quality, model, save_path)
 
 
 @cli.command("edit")

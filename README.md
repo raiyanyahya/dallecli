@@ -3,7 +3,7 @@
 
 # DalleCli 💠
 
-`dallecli` is a community-maintained cli designed to provide users with the ability to generate, edit and filter images using the DALL-E 2 API provided by OpenAI, all from the command line.
+`dallecli` is a community-maintained cli designed to provide users with the ability to generate, edit and filter images using the DALL-E 3 API provided by OpenAI, all from the command line.
 
 The tool provides three main commands, generate, edit, and filter.
 
@@ -14,6 +14,16 @@ The `edit` command provides the ability to edit an existing image by adjusting t
 The `filter` command allows users to apply various filters and effects to an existing image. The user can select from a range of different filters, and the filtered image can be saved to a specified file path.
 
 This is ideal for developers, designers, and anyone who wants to quickly generate and manipulate images without the need for a full-fledged image editing software. I hope you find it useful.
+
+## Note
+
+The image generations endpoint allows you to create an original image given a text prompt. When using DALL·E 3, images can have a size of 1024x1024, 1024x1792 or 1792x1024 pixels.
+
+By default, images are generated at standard quality, but when using DALL·E 3 you can set quality: "hd" for enhanced detail. Square, standard quality images are the fastest to generate.
+
+You can request 1 image at a time with DALL·E 3 (request more by making parallel requests) 
+
+Read more here https://platform.openai.com/docs/guides/images/introduction
 
 ## Configuration
 
@@ -33,7 +43,7 @@ I would recommend using pipx instead of pip to install cli applications on you m
 ```console
 Usage: dallecli [OPTIONS] COMMAND [ARGS]...
 
-  💠 Use the Dall.E 2 api to generate, edit & filter images from the cmd line.
+  💠 Use the Dall.E 3 api to generate, edit & filter images from the cmd line.
 
 Options:
   --help  Show this message and exit.
@@ -55,11 +65,13 @@ Usage: dallecli generate [OPTIONS]
 
 Options:
   --prompt TEXT                   💬 The prompt to generate the image from.
-  --size TEXT                     📐 The size of the generated image.
+  --size TEXT                     📐 The size of the generated image (default 1024x1024).
   --filter                        🎨 Apply a filter to the generated image.
   --iterations INTEGER            🔄 The number of times to generate the image.
   --save-path FILE                💾 Save the generated image to the specifiedfile path.
   --hide FLAG                     🖱️ Do not open the image after generation.
+  --quality TEXT                  👌 The quality of the image ( "standard" or "hd" ).
+  --model TEXT                    🦾 The OpenAI model to use when generating images ( use dall-e-2 for older model)
   --help                          Show this message and exit.
 ```
 

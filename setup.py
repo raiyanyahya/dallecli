@@ -29,7 +29,7 @@ setup(
     ],
     packages=find_packages(),
     install_requires=[
-        "requests==2.28.2",
+        "requests==2.31.0",
         "click==8.1.3",
         "openai==1.6.1",
         "rich==13.4.2",

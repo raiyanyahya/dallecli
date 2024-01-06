@@ -1,7 +1,6 @@
 import click
-from os import path, makedirs, getenv
+from os import path, makedirs, getenv, environ
 from io import BytesIO
-from os import environ
 from openai import OpenAI, AuthenticationError
 from PIL import Image, ImageEnhance, ImageFilter, ImageOps
 import requests

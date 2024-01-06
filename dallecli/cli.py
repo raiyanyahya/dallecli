@@ -98,13 +98,15 @@ def apply_filter_choices(image, filter_name):
         "outline": lambda i: i.filter(ImageFilter.CONTOUR).filter(
             ImageFilter.SMOOTH_MORE
         ),
-        "posterize": lambda i: i.convert("P", palette=Image.ADAPTIVE, colors=10),
+        "posterize": lambda i: i.convert(
+            "P", palette=Image.Palette.ADAPTIVE, colors=10
+        ),
         "solarize": lambda i: ImageOps.solarize(i, threshold=128),
         "invert": lambda i: ImageOps.invert(i),
-        "flip": lambda i: i.transpose(Image.FLIP_LEFT_RIGHT),
-        "rotate_90": lambda i: i.transpose(Image.ROTATE_90),
-        "rotate_180": lambda i: i.transpose(Image.ROTATE_180),
-        "rotate_270": lambda i: i.transpose(Image.ROTATE_270),
+        "flip": lambda i: i.transpose(Image.Transpose.FLIP_LEFT_RIGHT),
+        "rotate_90": lambda i: i.transpose(Image.Transpose.ROTATE_90),
+        "rotate_180": lambda i: i.transpose(Image.Transpose.ROTATE_180),
+        "rotate_270": lambda i: i.transpose(Image.Transpose.ROTATE_270),
     }
     if filter_name in filters:
         return filters[filter_name]
@@ -112,9 +114,9 @@ def apply_filter_choices(image, filter_name):
 
 
 @click.group()
-@click.version_option(version="2.1.0")
+@click.version_option(version="2.2.0")
 def cli():
-    """💠 Use the Dall.E 2 api to generate, edit & filter images from the cmd line."""
+    """💠 Use the Dall.E 3 api to generate, edit & filter images from the cmd line."""
 
 
 @cli.command("generate")

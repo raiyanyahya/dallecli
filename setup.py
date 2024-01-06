@@ -34,7 +34,7 @@ setup(
         "openai==1.6.1",
         "rich==13.4.2",
         "idna",
-        "pillow==10.0.1",
+        "pillow==10.2.0",
     ],
     entry_points={"console_scripts": ["dallecli=dallecli.cli:cli"]},
 )

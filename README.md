@@ -109,6 +109,7 @@ Usage: dallecli update [OPTIONS]
   🔐 Update the OpenAI API key.
 
 Options:
+  --env   ♻️ Get the api key from the OPENAI_API_KEY env variable
   --help  Show this message and exit.
 ```
 

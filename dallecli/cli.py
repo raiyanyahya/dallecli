@@ -203,7 +203,7 @@ def edit(image_path, brightness, contrast, sharpness):
 @click.option(
     "--env",
     is_flag=True,
-    help="🖱️ Get the api key from the OPENAI_API_KEY env variable",
+    help="♻️ Get the api key from the OPENAI_API_KEY env variable",
 )
 def update_key(env):
     """🔐 Update the OpenAI API key."""

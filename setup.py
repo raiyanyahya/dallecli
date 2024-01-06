@@ -11,7 +11,7 @@ setup(
     name="dallecli",
     python_requires=">3.8",
     options={"bdist_wheel": {"universal": "1"}},
-    version="2.0.0",
+    version="2.1.0",
     description="A command line application to help wrap the OpenAI Dalle 3 api and other utilities.",
     long_description=long_description,
     long_description_content_type="text/markdown",

@@ -1,6 +1,7 @@
 import click
 from os import path, makedirs, getenv
 from io import BytesIO
+from os import environ
 from openai import OpenAI, AuthenticationError
 from PIL import Image, ImageEnhance, ImageFilter, ImageOps
 import requests
@@ -199,13 +200,25 @@ def edit(image_path, brightness, contrast, sharpness):
 
 
 @cli.command("update")
-def update_key():
+@click.option(
+    "--env",
+    is_flag=True,
+    help="🖱️ Get the api key from the OPENAI_API_KEY env variable",
+)
+def update_key(env):
     """🔐 Update the OpenAI API key."""
     config_file = path.expanduser("~/.openai/config.json")
     if not path.exists(config_file):
         makedirs(path.dirname(config_file), exist_ok=True)
-
-    api_key = input("Enter your OpenAI API key: ")
+    api_key = ""
+    if env:
+        try:
+            api_key = environ["OPENAI_API_KEY"]
+        except KeyError:
+            print("🛑 $OPENAI_API_KEY variable not set.")
+            return
+    else:
+        api_key = input("Enter your OpenAI API key: ")
     with open(config_file, "w", encoding="UTF-8") as f:
         f.write(f'{{"api_key": "{api_key}"}}')
     print("API key updated successfully!")

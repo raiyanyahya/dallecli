@@ -31,7 +31,7 @@ setup(
     install_requires=[
         "requests==2.31.0",
         "click==8.1.3",
-        "openai==1.6.1",
+        "openai==1.7.1",
         "rich==13.4.2",
         "idna",
         "pillow==10.0.1",
